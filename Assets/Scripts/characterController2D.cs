@@ -8,6 +8,8 @@ public class characterController2D : MonoBehaviour
     private Rigidbody2D playerRB;
     private CapsuleCollider2D playerCollider;
     bool stopChecking = false;
+    bool running = false;
+    // bool facingRight = true;
     // Start is called before the first frame update
     
     private void Awake() {
@@ -22,12 +24,16 @@ public class characterController2D : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!stopChecking) {
-        Debug.Log(grounded());
-        if(grounded()) {
-            stopChecking = true;
-            playerRB.bodyType = RigidbodyType2D.Static;
+        if(Input.GetAxisRaw("Horizontal") != 0.0f) {
+            running = true;
+        } else {
+            running = false;
         }
+    }
+
+    private void FixedUpdate() {
+        if(running) {
+            GetComponent<movement_action>().invoke(Input.GetAxisRaw("Horizontal"), ref playerRB, grounded());
         }
     }
 
