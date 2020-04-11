@@ -9,6 +9,7 @@ public class characterController2D : MonoBehaviour
     private CapsuleCollider2D playerCollider;
     bool stopChecking = false;
     bool running = false;
+    bool jumping = false;
     // bool facingRight = true;
     // Start is called before the first frame update
     
@@ -29,12 +30,22 @@ public class characterController2D : MonoBehaviour
         } else {
             running = false;
         }
+
+        if(Input.GetButtonDown("Jump")) {
+            jumping = true;
+        } else {
+            jumping = false;
+        }
     }
 
     private void FixedUpdate() {
+            GetComponent<jump_action>().invoke(ref playerRB, grounded(), jumping);
         if(running) {
             GetComponent<movement_action>().invoke(Input.GetAxisRaw("Horizontal"), ref playerRB, grounded());
         }
+        // if(jumping) {
+
+        // }
     }
 
     private bool grounded() {
