@@ -12,35 +12,41 @@ public class characterController2D : MonoBehaviour
     bool jumping = false;
     // bool facingRight = true;
     // Start is called before the first frame update
-    
-    private void Awake() {
-        playerRB = GetComponent<Rigidbody2D>();   
-        playerCollider = GetComponent<CapsuleCollider2D>(); 
+
+    private void Awake()
+    {
+        playerRB = GetComponent<Rigidbody2D>();
+        playerCollider = GetComponent<CapsuleCollider2D>();
     }
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetAxisRaw("Horizontal") != 0.0f) {
+        if (Input.GetAxisRaw("Horizontal") != 0.0f)
+        {
             running = true;
-        } else {
+        }
+        else
+        {
             running = false;
         }
 
-        if(Input.GetButtonDown("Jump")) {
+        if (Input.GetButtonDown("Jump"))
+        {
+            Debug.Log("Jumping");
             jumping = true;
-        } else {
+        }
+        else
+        {
             jumping = false;
         }
-    }
-
-    private void FixedUpdate() {
-            GetComponent<jump_action>().invoke(ref playerRB, grounded(), jumping);
-        if(running) {
+        GetComponent<jump_action>().invoke(ref playerRB, grounded(), jumping);
+        if (running)
+        {
             GetComponent<movement_action>().invoke(Input.GetAxisRaw("Horizontal"), ref playerRB, grounded());
         }
         // if(jumping) {
@@ -48,7 +54,8 @@ public class characterController2D : MonoBehaviour
         // }
     }
 
-    private bool grounded() {
+    private bool grounded()
+    {
         RaycastHit2D groundCheck = Physics2D.Raycast(
             playerRB.position,
             Vector2.down,

@@ -12,15 +12,17 @@ public class jump_action : MonoBehaviour
     
     [Range(1.0f, 3.0f)]
     [SerializeField] public float lowJumpMultiplier = 2.0f;
+
+    public bool canJump;
     // []
     // Start is called before the first frame update
     public void invoke(ref Rigidbody2D playerRB, bool isGrounded, bool isJumping) {
-        if(playerRB.velocity.y < 0.0f) {
-            playerRB.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
-        } else if(playerRB.velocity.y > 0.0f && !Input.GetButton("Jump")) {
-            playerRB.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.fixedDeltaTime;
-        } else if(isJumping) {
+        if(isJumping && isGrounded) {
             playerRB.velocity = Vector2.up * jumpVelocity + Vector2.right * playerRB.velocity.x;
+        } else if(playerRB.velocity.y < 0.0f) {
+            playerRB.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+        } else if(playerRB.velocity.y > 0.0f && !Input.GetButton("Jump")) {
+            playerRB.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
     }
 

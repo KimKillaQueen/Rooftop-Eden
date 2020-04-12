@@ -8,8 +8,8 @@ public class movement_action : action
     // Start is called before the first frame update
     public void invoke(float direction, ref Rigidbody2D playerRB, bool isGrounded) {
         // if(isGrounded) {
-            Debug.Log("moving");
-            playerRB.velocity += Vector2.right * acceleration * direction * Time.fixedDeltaTime;
+            // Debug.Log("moving");
+            playerRB.velocity += Vector2.right * acceleration * direction * Time.deltaTime;
         // }
     }
 }
