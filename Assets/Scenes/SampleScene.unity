@@ -411,7 +411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: facfeab2610047c489549843a8e42eb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 10
+  acceleration: 7.5
 --- !u!114 &664854230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,6 +427,7 @@ MonoBehaviour:
   jumpVelocity: 5
   fallMultiplier: 2.5
   lowJumpMultiplier: 2
+  canJump: 0
 --- !u!1 &686817787
 GameObject:
   m_ObjectHideFlags: 0

@@ -49,6 +49,10 @@ public class characterController2D : MonoBehaviour
         {
             GetComponent<movement_action>().invoke(Input.GetAxisRaw("Horizontal"), ref playerRB, grounded());
         }
+
+        if(Input.GetAxisRaw("modifier") == -1) {
+            Debug.Log("Holding left trigger");
+        }
         // if(jumping) {
 
         // }
